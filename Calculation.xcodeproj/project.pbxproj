@@ -23,6 +23,7 @@
 		0A017C4D163664140058A11B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A017C28163664130058A11B /* Foundation.framework */; };
 		0A017C55163664150058A11B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A017C53163664150058A11B /* InfoPlist.strings */; };
 		0A017C58163664150058A11B /* CalculationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A017C57163664150058A11B /* CalculationTests.m */; };
+		0AB73DEE169E7C1E007112DA /* CalculationMotion.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AB73DED169E7C1E007112DA /* CalculationMotion.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,8 @@
 		0A017C54163664150058A11B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0A017C56163664150058A11B /* CalculationTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CalculationTests.h; sourceTree = "<group>"; };
 		0A017C57163664150058A11B /* CalculationTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CalculationTests.m; sourceTree = "<group>"; };
+		0AB73DEC169E7C1E007112DA /* CalculationMotion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalculationMotion.h; sourceTree = "<group>"; };
+		0AB73DED169E7C1E007112DA /* CalculationMotion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalculationMotion.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +125,8 @@
 				0A017C3E163664130058A11B /* MainStoryboard.storyboard */,
 				0A017C41163664130058A11B /* CalculationViewController.h */,
 				0A017C42163664130058A11B /* CalculationViewController.m */,
+				0AB73DEC169E7C1E007112DA /* CalculationMotion.h */,
+				0AB73DED169E7C1E007112DA /* CalculationMotion.m */,
 				0A017C2D163664130058A11B /* Supporting Files */,
 			);
 			path = Calculation;
@@ -274,6 +279,7 @@
 				0A017C33163664130058A11B /* main.m in Sources */,
 				0A017C37163664130058A11B /* CalculationAppDelegate.m in Sources */,
 				0A017C43163664130058A11B /* CalculationViewController.m in Sources */,
+				0AB73DEE169E7C1E007112DA /* CalculationMotion.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -447,6 +453,7 @@
 				0A017C5D163664150058A11B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0A017C5E163664150058A11B /* Build configuration list for PBXNativeTarget "CalculationTests" */ = {
 			isa = XCConfigurationList;
@@ -455,6 +462,7 @@
 				0A017C60163664150058A11B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

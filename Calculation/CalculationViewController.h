@@ -7,15 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CalculationMotion.h"
 
 @interface CalculationViewController : UIViewController
 {
 
-    int roop,keta;
+    int roop;
     float output,input,downdot,result;
     
 }
 @property (weak, nonatomic) IBOutlet UILabel *Calculate;
+
+@property(readonly) CalculationMotion* motion;
 
 @property enum {START, END} STARTorEND;
 @property enum {Normal, Dot} InputStyle;
@@ -40,5 +43,12 @@
 - (IBAction)percent:(id)sender;
 - (IBAction)plus_minus:(id)sender;
 - (IBAction)allclear:(id)sender;
+
+- (void)Calculation_Contetns;
+- (void)input;
+- (void)output_initialization;
+- (void)setTextToOutput;
+- (void)setTextToResult;
+- (void)RecentCalculation;
 
 @end

@@ -97,7 +97,7 @@ float result;
 
 - (IBAction)keydot:(id)sender {
     [self setInputStyle:Dot];
-    [[self Calculate] setText:[NSString stringWithFormat:@"%g.", output]];
+    [self setTextToOutput_PushDot];
     downdot=1;
 }
 
@@ -186,15 +186,16 @@ float result;
 }
 
 - (IBAction)allclear:(id)sender {
-    [self output_initialization];
     roop=0;
     result=0;
     downdot=1;
+    [self output_initialization];
     [self setTextToResult];
     [self setCalculation:Non];
     [self setSTARTorEND:START];
     [self setInputStyle:Normal];
     [self setPLUSorMINUS:Plus];
+    [_motion allclear:sender controller:self];
 }
 
 /*
@@ -216,7 +217,7 @@ float result;
                 output=output+input*pow(0.1,downdot);
                 downdot++;
                 if (input == 0)
-                    [[self Calculate] setText:[NSString stringWithFormat:@"%g0", output]];
+                    [self setTextToOutput_PushDotAnd0];
                 else
                     [self setTextToOutput];
                 break;
@@ -232,12 +233,22 @@ float result;
                 output=output-input*pow(0.1,downdot);
                 downdot++;
                 if (input == 0)
-                    [[self Calculate] setText:[NSString stringWithFormat:@"%g0", output]];
+                    [self setTextToOutput_PushDotAnd0];
                 else
                     [self setTextToOutput];
                 break;
         }
     }
+}
+
+- (void)setTextToOutput_PushDotAnd0
+{
+    [[self Calculate] setText:[NSString stringWithFormat:@"%g0", output]];
+}
+
+- (void)setTextToOutput_PushDot
+{
+    [[self Calculate] setText:[NSString stringWithFormat:@"%g.", output]];
 }
 
 /*
