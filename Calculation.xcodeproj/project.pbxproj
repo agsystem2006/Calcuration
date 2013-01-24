@@ -23,6 +23,8 @@
 		0A017C4D163664140058A11B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A017C28163664130058A11B /* Foundation.framework */; };
 		0A017C55163664150058A11B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A017C53163664150058A11B /* InfoPlist.strings */; };
 		0A017C58163664150058A11B /* CalculationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A017C57163664150058A11B /* CalculationTests.m */; };
+		0A413E2616B0EEF500898AC8 /* CalculationMotionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A413E2516B0EEF500898AC8 /* CalculationMotionTests.m */; };
+		0A413E2F16B0F11800898AC8 /* MockCalculationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A413E2E16B0F11800898AC8 /* MockCalculationViewController.m */; };
 		0AB73DEE169E7C1E007112DA /* CalculationMotion.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AB73DED169E7C1E007112DA /* CalculationMotion.m */; };
 /* End PBXBuildFile section */
 
@@ -59,6 +61,10 @@
 		0A017C54163664150058A11B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0A017C56163664150058A11B /* CalculationTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CalculationTests.h; sourceTree = "<group>"; };
 		0A017C57163664150058A11B /* CalculationTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CalculationTests.m; sourceTree = "<group>"; };
+		0A413E2416B0EEF500898AC8 /* CalculationMotionTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalculationMotionTests.h; sourceTree = "<group>"; };
+		0A413E2516B0EEF500898AC8 /* CalculationMotionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalculationMotionTests.m; sourceTree = "<group>"; };
+		0A413E2D16B0F11800898AC8 /* MockCalculationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MockCalculationViewController.h; sourceTree = "<group>"; };
+		0A413E2E16B0F11800898AC8 /* MockCalculationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MockCalculationViewController.m; sourceTree = "<group>"; };
 		0AB73DEC169E7C1E007112DA /* CalculationMotion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalculationMotion.h; sourceTree = "<group>"; };
 		0AB73DED169E7C1E007112DA /* CalculationMotion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalculationMotion.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -151,6 +157,10 @@
 			children = (
 				0A017C56163664150058A11B /* CalculationTests.h */,
 				0A017C57163664150058A11B /* CalculationTests.m */,
+				0A413E2416B0EEF500898AC8 /* CalculationMotionTests.h */,
+				0A413E2516B0EEF500898AC8 /* CalculationMotionTests.m */,
+				0A413E2D16B0F11800898AC8 /* MockCalculationViewController.h */,
+				0A413E2E16B0F11800898AC8 /* MockCalculationViewController.m */,
 				0A017C51163664140058A11B /* Supporting Files */,
 			);
 			path = CalculationTests;
@@ -288,6 +298,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A017C58163664150058A11B /* CalculationTests.m in Sources */,
+				0A413E2616B0EEF500898AC8 /* CalculationMotionTests.m in Sources */,
+				0A413E2F16B0F11800898AC8 /* MockCalculationViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -112,6 +112,12 @@ float result;
     [self setSTARTorEND:END];
 }
 
+
+/*
+ ＋ならばAdd、ーならばSub、×ならばMul、÷ならばDivという状態に変更する。
+ 四則演算を２つ以上入力する場合、直前の計算結果を表示させて、状態を変更する。
+ */
+
 - (void)add:(id)sender controller:(CalculationViewController*)controller
 {
     [self Calculation_Contetns:(id)sender controller:(CalculationViewController*)controller];
@@ -195,8 +201,11 @@ float result;
 }
 
 /*
- ＋ならばAdd、ーならばSub、×ならばMul、÷ならばDivという状態に変更する。
- 四則演算を２つ以上入力する場合、直前の計算結果を表示させて、状態を変更する。
+ 数字ボタンを押したときの処理
+ 整数入力時はoutputに１０をかけ、inputを足し、その数値をラベルに表示する。
+ 小数点以下入力時は、outputはそのまま足し、
+ ０．１に（小数点を押した後に数字ボタンを押した回数）を乗数とし、
+ それとinputの数値をかける。
  */
 
 - (void)input:(id)sender controller:(CalculationViewController*)controller
