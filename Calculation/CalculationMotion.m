@@ -11,7 +11,6 @@
 
 @implementation CalculationMotion
 
-int roop=0;
 float input=0;
 float downdot;
 float output;
@@ -21,7 +20,7 @@ float result;
 {
     input=0;
     [self input:(id)sender controller:(CalculationViewController*)controller];
-    roop=0;
+    [self setRoop:Disable];
 }
 
 - (void)key1:(id)sender controller:(CalculationViewController*)controller
@@ -78,7 +77,13 @@ float result;
     [self input:(id)sender controller:(CalculationViewController*)controller];
 }
 
-/* ここまで数値の入力 */
+/*
+ ここまで数値の入力。inputに数字を格納するのみで、残りはinputの関数で処理する。
+ ただし、０を入力した場合は、イコールボタンの仕様で、
+ ０を入力する前に保存した数値がループ演算の対象となってしまうため、
+ ループをさせないように状態をDisableに戻す。
+ これにより、イコールボタンの関数で、演算の関数(RecentCalculation)を避けるようにすることができる。
+ */
 
 /*
  ドットおよび小数点ボタンを押した場合、次の数字を入力するまで小数点以下の入力になる。
@@ -106,7 +111,7 @@ float result;
 
 - (void)equal:(id)sender controller:(CalculationViewController*)controller
 {
-    if(roop==1 && output==0)
+    if([self Roop]==Enable && output==0)
         output=result;
     [self RecentCalculation:(id)sender controller:(CalculationViewController*)controller];
     [self setSTARTorEND:END];
@@ -144,9 +149,10 @@ float result;
 
 /*
  パーセント計算は、演算符号を押した後が有効である。
+ １００　＋　２０　％
+ と押せば、１００の２０パーセント、すなわち２０と表示するような動作が起こる。
  演算符号を押してない状態でパーセントボタンを押せば
- 一度入力を初期状態（AllClearボタンを押した状態）に戻し、
- 入力したボタンを
+ 初期状態（AllClearボタンを押した状態）に戻す。
  */
 
 - (void)percent:(id)sender controller:(CalculationViewController*)controller
@@ -160,6 +166,14 @@ float result;
     [controller setTextToResult];
     [self setCalculation:Non];
 }
+
+/*
+ プラスマイナスボタンにより、
+ プラス⇨マイナスの場合は、状態をMinusにし、０から格納している数値を引く。
+ マイナス⇨プラスの場合は、状態をPlusにし、０から格納している数値を引くが、
+ このときの数値はマイナスなので、結果的にプラスとなる。
+ 演算符号、およびAllClearボタンを押したとき、この状態は必ずPlusに戻る。
+ */
 
 - (void)plus_minus:(id)sender controller:(CalculationViewController*)controller
 {
@@ -178,12 +192,16 @@ float result;
     }
 }
 
+/*
+ AllClearボタンは全ての状態を初期状態に戻す最終兵器。
+ 表示は０であり、そして全ての状態も最初の状態に戻る。
+ */
 - (void)allclear:(id)sender controller:(CalculationViewController*)controller
 {
-    roop=0;
+    [self setRoop:Disable];
     result=0;
     downdot=1;
-    [self output_initialization];
+    output=0;
     [controller setTextToResult];
     [self setCalculation:Non];
     [self setSTARTorEND:START];
@@ -191,21 +209,27 @@ float result;
     [self setPLUSorMINUS:Plus];
 }
 
+/*
+ 演算記号を押したときに、どのような判定を行うかという部分である。
+ もし、イコールを押せば、演算を行う。STARTorENDはSTARTの状態になるが、equalボタンの中では、結果的にこの状態はENDとなる。
+ 四則演算のボタンを押せば、一度そこまでの計算を行い、その時点での結果をラベルに表示する。
+ */
+
 - (void)Calculation_Contetns:(id)sender controller:(CalculationViewController*)controller
 {
     if ([self STARTorEND] == START)
         [self RecentCalculation:(id)sender controller:(CalculationViewController*)controller];
     [self output_initialization];
     [self setSTARTorEND:START];
-    roop=1;
+    [self setRoop:Enable];
 }
 
 /*
  数字ボタンを押したときの処理
  整数入力時はoutputに１０をかけ、inputを足し、その数値をラベルに表示する。
  小数点以下入力時は、outputはそのまま足し、
- ０．１に（小数点を押した後に数字ボタンを押した回数）を乗数とし、
- それとinputの数値をかける。
+ ０．１に「小数点を押した後に数字ボタンを押した回数」を乗数とし、
+ それと入力した数字ボタン（=input）の数値をかける。
  */
 
 - (void)input:(id)sender controller:(CalculationViewController*)controller
@@ -249,11 +273,22 @@ float result;
     }
 }
 
+/*
+ 演算キーを押した後、この関数に移る。
+ 単純にoutputを0にするだけでなく、直前の入力状態がマイナス状態の場合、
+ 次の入力はプラス入力から始まるので、 状態をPlusに戻す必要がある。
+ */
 - (void)output_initialization
 {
     output=0;
     [self setPLUSorMINUS:Plus];
 }
+
+/*
+ ここで演算を行う。演算の判別は、演算キーを押したときにCalculateという状態が変更されるので、そこを見て判別される。
+ 演算符号を押していない状態は全てNonという状態である。
+ 演算が終わると、入力状態は小数点入力ではなく整数入力に戻し、小数点の桁数も１に戻しておく
+ */
 
 - (void)RecentCalculation:(id)sender controller:(CalculationViewController*)controller
 {
@@ -279,6 +314,12 @@ float result;
     downdot=1;
 }
 
+/*
+ 以下の二つは、コントローラーからの呼び出しのために使う変数である。
+ outputを呼びたい場合は[motion funcOutput]、
+ resultを呼びたい場合は[motion funcResult]を使う。
+ */
+
 -(double)funcResult
 {
     return result;
@@ -289,3 +330,21 @@ float result;
     return output;
 }
 @end
+
+/*
+ 「感想」
+ 今回工夫した点は、２つあると考えた。
+ 一つ目は、判別を行うような内容の場合は、できるだけ状態の変化を使うことである。
+ これを使うことにより、使う変数を４つに押さえることができた。
+ 二つ目は、繰り返し演算だと思う。ここは数値を入力しなくても、直前で演算符号を押せば、
+ その前の数字で計算を行うことができる部分である。この部分もよく考えたなぁと思った。
+ この電卓は、関数電卓ではなく、一般的な四則演算用の電卓としてプログラムを完成させた。
+ 関数電卓は、このオーソドックスな電卓から、三角関数や、組み合わせ演算など、いろいろな機能を追加した部分なので、
+ このオーソドックスな電卓を作ることが前提条件だと考えた。
+ まだ時間があれば、関数電卓まで考えることも可能だったと思う。そう考えると、いろいろ機能を追加していくことも楽しいと思った。
+ */
+
+
+
+
+

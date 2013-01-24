@@ -12,8 +12,7 @@
 
 @interface CalculationMotion : NSObject
 {
-    
-    int roop;
+
     float output,input,downdot,result;
     
 }
@@ -22,6 +21,7 @@
 @property enum {Normal, Dot} InputStyle;
 @property enum {Plus, Minus} PLUSorMINUS;
 @property enum {Non, Add, Sub, Mul, Div} Calculation;
+@property enum {Enable, Disable} Roop;
 
 - (void)key0:(id)sender controller:(CalculationViewController*)controller;
 - (void)key1:(id)sender controller:(CalculationViewController*)controller;

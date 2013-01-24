@@ -10,6 +10,8 @@
 
 #import "CalculationMotion.h"
 
+#import "CalculationViewController.h"
+
 @implementation CalculationTests
 
 CalculationMotion* motion;
@@ -30,7 +32,7 @@ CalculationMotion* motion;
 
 - (void)testExample
 {
-    //STFail(@"Unit tests are not implemented yet in CalculationTests");
+
 }
 
 @end
