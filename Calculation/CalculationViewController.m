@@ -14,17 +14,19 @@
 
 @implementation CalculationViewController
 
+@synthesize motion;//
 
-int roop=0;
-float input=0;
-float downdot;
-float output;
-float result;
+//int roop=0;
+//float input=0;
+//float downdot;
+//float output;
+//float result;
 
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    motion = [[CalculationMotion alloc] init];
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -34,143 +36,134 @@ float result;
     // Dispose of any resources that can be recreated.
 }
 
-/* ここから数値の入力 */
-
 - (IBAction)key0:(id)sender {
-    input=0;
-    [self input];
-    roop=0;
+    //input=0;
+    //[self input];
+    //roop=0;
+    [motion key0:sender controller:self];
 }
 
 - (IBAction)key1:(id)sender {
-    input=1;
-    [self input];
+    //input=1;
+    //[self input];
+    [motion key1:sender controller:self];
 }
 
 - (IBAction)key2:(id)sender {
-    input=2;
-    [self input];
+    //input=2;
+    //[self input];
+    [motion key2:sender controller:self];
 }
 
 - (IBAction)key3:(id)sender {
-    input=3;
-    [self input];
+    //input=3;
+    //[self input];
+    [motion key3:sender controller:self];
 }
 
 - (IBAction)key4:(id)sender {
-    input=4;
-    [self input];
+    //input=4;
+    //[self input];
+    [motion key4:sender controller:self];
 }
 
 - (IBAction)key5:(id)sender {
-    input=5;
-    [self input];
+    //input=5;
+    //[self input];
+    [motion key5:sender controller:self];
 }
 
 - (IBAction)key6:(id)sender {
-    input=6;
-    [self input];
+    //input=6;
+    //[self input];
+    [motion key6:sender controller:self];
 }
 
 - (IBAction)key7:(id)sender {
-    input=7;
-    [self input];
+    //input=7;
+    //[self input];
+    [motion key7:sender controller:self];
 }
 
 - (IBAction)key8:(id)sender {
-    input=8;
-    [self input];
+    //input=8;
+    //[self input];
+    [motion key8:sender controller:self];
 }
 
 - (IBAction)key9:(id)sender {
-    input=9;
-    [self input];
+    //input=9;
+    //[self input];
+    [motion key9:sender controller:self];
 }
-
-/* ここまで数値の入力 */
-
-/*
- ドットおよび小数点ボタンを押した場合、次の数字を入力するまで小数点以下の入力になる。
- このとき、表示の状態をDotにする。
- 演算符号のボタンを押したときにNormalに戻す。
- */
 
 - (IBAction)keydot:(id)sender {
-    [self setInputStyle:Dot];
-    [self setTextToOutput_PushDot];
-    downdot=1;
+    //[self setInputStyle:Dot];
+    //[self setTextToOutput_PushDot];
+    //downdot=1;
+    [motion keydot:sender controller:self];
 }
 
-/* 演算の実行 */
 
-/*
- 等号の場合、計算を実行するが、その前に直前に入力したボタンが演算ボタンの場合、
- 表示している数字を入力した数値とみなし、同じ演算を行うようにしている。
- 繰り返し等号ボタンを押せば、同じ演算を繰り返す。
- 例：
- 　入力：２　＋　＝　＝　＝　　＝
- 　出力：２　２　４　８　１６　３２
- */
 - (IBAction)equal:(id)sender {
-    if(roop==1 && output==0)
+    /*if(roop==1 && output==0)
         output=result;
     [self RecentCalculation];
-    [self setSTARTorEND:END];
+    [self setSTARTorEND:END];*/
+    [motion equal:sender controller:self];
 }
 
 
 
 - (void)Calculation_Contetns {
-    if ([self STARTorEND] == START)
+    /*if ([self STARTorEND] == START)
         [self RecentCalculation];
     [self output_initialization];
     [self setSTARTorEND:START];
-    roop=1;
+    roop=1;*/
+    
 }
 
-/*
- ＋ならばAdd、ーならばSub、×ならばMul、÷ならばDivという状態に変更する。
- 四則演算を２つ以上入力する場合、直前の計算結果を表示させて、状態を変更する。
- */
-
 - (IBAction)add:(id)sender {
-    [self Calculation_Contetns];
-    [self setCalculation:Add];
-
+    //[self Calculation_Contetns];
+    //[self setCalculation:Add];
+    [motion add:sender controller:self];
 }
 
 - (IBAction)substraction:(id)sender {
-    [self Calculation_Contetns];
-    [self setCalculation:Sub];
+    //[self Calculation_Contetns];
+    //[self setCalculation:Sub];
+    [motion substraction:sender controller:self];
 }
 
 - (IBAction)multiply:(id)sender {
-    [self Calculation_Contetns];
-    [self setCalculation:Mul];
+    //[self Calculation_Contetns];
+    //[self setCalculation:Mul];
+    [motion multiply:sender controller:self];
 }
 
 - (IBAction)division:(id)sender {
-    [self Calculation_Contetns];
-    [self setCalculation:Div];
+    //[self Calculation_Contetns];
+    //[self setCalculation:Div];
+    [motion division:sender controller:self];
 }
 
-/*
- パーセント計算は、
- */
+
 
 - (IBAction)percent:(id)sender {
-    if ([self Calculation] != Non && [self STARTorEND] == START) {
+    /*if ([self Calculation] != Non && [self STARTorEND] == START) {
         result=result*output/100;
         [self setSTARTorEND:END];
     }
     else
         [self allclear:(id)sender];
     [self setTextToResult];
-    [self setCalculation:Non];
+    [self setCalculation:Non];*/
+    [motion percent:sender controller:self];
 }
 
 - (IBAction)plus_minus:(id)sender {
-    if ([self PLUSorMINUS] == Plus)
+    /*if ([self PLUSorMINUS] == Plus)
         [self setPLUSorMINUS:Minus];
     else
         [self setPLUSorMINUS:Plus];
@@ -183,10 +176,13 @@ float result;
         result=0-result;
         [self setTextToResult];
     }
+     */
+    [motion plus_minus:sender controller:self];
 }
 
 - (IBAction)allclear:(id)sender {
-    roop=0;
+    /*
+     roop=0;
     result=0;
     downdot=1;
     [self output_initialization];
@@ -196,6 +192,8 @@ float result;
     [self setInputStyle:Normal];
     [self setPLUSorMINUS:Plus];
     [_motion allclear:sender controller:self];
+     */
+    [motion allclear:sender controller:self];
 }
 
 /*
@@ -207,6 +205,7 @@ float result;
  */
 
 - (void)input {
+    /*
     if ([self PLUSorMINUS] == Plus){
         switch([self InputStyle]) {
             case Normal:
@@ -239,15 +238,19 @@ float result;
                 break;
         }
     }
+     */
+    
 }
 
 - (void)setTextToOutput_PushDotAnd0
 {
+    output = [motion funcOutput];
     [[self Calculate] setText:[NSString stringWithFormat:@"%g0", output]];
 }
 
 - (void)setTextToOutput_PushDot
 {
+    output = [motion funcOutput];
     [[self Calculate] setText:[NSString stringWithFormat:@"%g.", output]];
 }
 
@@ -256,19 +259,22 @@ float result;
  */
 
 - (void)output_initialization {
-    output=0;
-    [self setPLUSorMINUS:Plus];
+    //output=0;
+    //[self setPLUSorMINUS:Plus];
 }
 
 - (void)setTextToOutput {
+    output = [motion funcOutput];
     [[self Calculate] setText:[NSString stringWithFormat:@"%g", output]];
 }
 
 - (void)setTextToResult {
+    result = [motion funcResult];
     [[self Calculate] setText:[NSString stringWithFormat:@"%g", result]];
 }
 
 - (void)RecentCalculation {
+    /*
         switch([self Calculation]) {
             case Non:
                 result=output;
@@ -289,6 +295,7 @@ float result;
     [self setInputStyle:Normal];
     [self setTextToResult];
     downdot=1;
+     */
 }
 
 

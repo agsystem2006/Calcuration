@@ -20,10 +20,6 @@
 
 @property(readonly) CalculationMotion* motion;
 
-@property enum {START, END} STARTorEND;
-@property enum {Normal, Dot} InputStyle;
-@property enum {Plus, Minus} PLUSorMINUS;
-@property enum {Non, Add, Sub, Mul, Div} Calculation;
 - (IBAction)key0:(id)sender;
 - (IBAction)key1:(id)sender;
 - (IBAction)key2:(id)sender;
@@ -43,12 +39,10 @@
 - (IBAction)percent:(id)sender;
 - (IBAction)plus_minus:(id)sender;
 - (IBAction)allclear:(id)sender;
-
-- (void)Calculation_Contetns;
-- (void)input;
-- (void)output_initialization;
+- (void)setTextToOutput_PushDotAnd0;
+- (void)setTextToOutput_PushDot;
 - (void)setTextToOutput;
 - (void)setTextToResult;
-- (void)RecentCalculation;
+
 
 @end

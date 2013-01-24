@@ -11,6 +11,17 @@
 @class CalculationViewController;
 
 @interface CalculationMotion : NSObject
+{
+    
+    int roop;
+    float output,input,downdot,result;
+    
+}
+
+@property enum {START, END} STARTorEND;
+@property enum {Normal, Dot} InputStyle;
+@property enum {Plus, Minus} PLUSorMINUS;
+@property enum {Non, Add, Sub, Mul, Div} Calculation;
 
 - (void)key0:(id)sender controller:(CalculationViewController*)controller;
 - (void)key1:(id)sender controller:(CalculationViewController*)controller;
@@ -31,5 +42,9 @@
 - (void)percent:(id)sender controller:(CalculationViewController*)controller;
 - (void)plus_minus:(id)sender controller:(CalculationViewController*)controller;
 - (void)allclear:(id)sender controller:(CalculationViewController*)controller;
-
+- (void)input:(id)sender controller:(CalculationViewController*)controller;
+- (void)Calculation_Contetns:(id)sender controller:(CalculationViewController*)controller;
+- (void)RecentCalculation:(id)sender controller:(CalculationViewController*)controller;
+-(double)funcResult;
+-(double)funcOutput;
 @end
