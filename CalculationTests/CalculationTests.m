@@ -8,7 +8,11 @@
 
 #import "CalculationTests.h"
 
+#import "CalculationMotion.h"
+
 @implementation CalculationTests
+
+CalculationMotion* motion;
 
 - (void)setUp
 {
